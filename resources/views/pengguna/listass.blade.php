@@ -102,7 +102,6 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold">Assignment</h6>
             </div>
-            @if($ass->count() > 0)
             <div class="row ml-2 mr-2">
                 @foreach($ass as $a)
                 <div class="col-md-4 mt-4">
@@ -134,13 +133,6 @@
                 </div>
                 @endforeach
             </div>
-            @else
-            <div class="row justify-content-center" style="margin-top: 15%">
-                <div class="col text-center">
-                    <b>Assignment Belum Tersedia</b>
-                </div>
-            </div>
-            @endif
         </div>
         <!-- End Cards Jadwals -->
 

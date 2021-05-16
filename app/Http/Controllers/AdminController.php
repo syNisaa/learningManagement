@@ -8,6 +8,10 @@ use App\User;
 use App\Modul;
 use App\Schedule;
 use App\Billings;
+use App\Category;
+use App\Datasiswa;
+use App\Instansi;
+use App\Testi;
 use Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
 // use DataTables;
@@ -16,6 +20,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class AdminController extends Controller
 {
@@ -39,14 +45,27 @@ class AdminController extends Controller
     public function viewclass()
     {
         $classes = Classes::all();
-        return view('index', ['class' => $classes]);
+        $category = Category::all();
+        $testi= Testi::all();
+        // echo ($category);
+        return view('index', compact('category','testi'));
     }
-    public function class($id)
+    public function class()
     {
-        $class = Classes::where('id', $id)->get();
-        return view('auth.register', ['class' => $class]);
+        $instansi = Instansi::all();
+        return view('auth.register', compact('instansi'));
         // echo($class);
     }
+
+    public function percategory($classcategory)
+    {
+        $classes = Classes::where('jenisCategory',$classcategory)->get();
+        $category = Category::where('nameCategory',$classcategory)->get();
+        $testi= Testi::all();
+        // echo ($category);
+        return view('classcategory', compact('category','testi','classes'));
+    }
+    
     // register siswa
     public function createuser(Request $request)
     {
@@ -55,17 +74,16 @@ class AdminController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'gender' => $request->gender,
-                'class' => $request->class,
                 'instansi' => $request->instansi,
                 'phone' => "0000-0000-0000",
                 // 'price' => $request->price,
             ]);
-            Billings::create([
-                'name'=>$request->name,
-                'class'=>$request->class,
-                'price'=>$request->price,
-                'date'=> Carbon\Carbon::now()
-            ]);
+            // Billings::create([
+            //     'name'=>$request->name,
+            //     'class'=>$request->class,
+            //     'price'=>$request->price,
+            //     'date'=> Carbon\Carbon::now()
+            // ]);
             return redirect('/login'); 
     }
 
@@ -77,7 +95,8 @@ class AdminController extends Controller
 
     public function changeview()
     {
-        return view('admin.updatepw');
+        $classes = Classes::all();
+        return view('admin.updatepw',compact('classes'));
     }
 
     public function updatepw()
@@ -103,7 +122,7 @@ class AdminController extends Controller
 
     public function dashboardadmin()
     {
-        $countStudent = User::where('role', 'student')->count();
+        $countStudent = Datasiswa::all()->count();
         $countInstructor = User::where('role', 'instructor')->count();
         $countJadwal = Schedule::all()->count();
         $countClass = Classes::all()->count();
@@ -128,9 +147,35 @@ class AdminController extends Controller
             'password' => Hash::make('12345678'),
             'gender' => $request->gender,
             'phone' => $request->phone,
-            'role' => $request->role
+            'role' => $request->role,
+            'class' => $request->class
         ]);
         return redirect('/user');
+    }
+
+    public function updatest(Request $request, $id)
+    {
+        Session::flash('sukses','Successfully Changed Data');
+        $users = Datasiswa::find($id);
+        $users->name = $request->name;
+        $users->email = $request->email;
+        $users->class_category = $request->class;
+        $users->date = $request->date;
+        $users->status = "non";
+        $users->save();
+        
+        return redirect('/siswaDigital%20Marketing');
+    }
+
+    public function updateest(Request $request, $id)
+    {
+        Session::flash('sukses','Successfully Changed Data');
+        $users = Datasiswa::find($id);
+      
+        $users->status = "aktif";
+        $users->save();
+        
+        return redirect('/siswaDigital%20Marketing');
     }
 
     public function update(Request $request, $id)
@@ -142,8 +187,11 @@ class AdminController extends Controller
         $users->gender = $request->gender;
         $users->phone = $request->phone;
         $users->role = $request->role;
+        // 
+        
+        // $users->status = "non";
         $users->save();
-
+        
         return redirect('/user');
     }
 
@@ -166,6 +214,13 @@ class AdminController extends Controller
         Session::flash('sukses','Successfully Delete Data');
         User::destroy($id);
         return redirect('/user');
+    }
+
+    public function destroyst($id)
+    {
+        Session::flash('sukses','Successfully Delete Data');
+        Datasiswa::destroy($id);
+        return redirect('/siswaDigital%20Marketing');
     }
 
     // Data Lesson
@@ -234,7 +289,8 @@ class AdminController extends Controller
     public function classes()
     {
         $classes = Classes::all();
-        return view('admin.classes.index', ['classes' => $classes]);
+        $jnscategory = Category::all();
+        return view('admin.classes.index', compact('classes','jnscategory'));
     }
 
     public function delete_class($id)
@@ -248,6 +304,7 @@ class AdminController extends Controller
         $name_file = $image->getClientOriginalName();
         $image->move(base_path('/public/image_class'), $name_file);
         Classes::create([
+            'jenisCategory' => $request->program,
             'category' => $request->category,
             'deskripsi' => $request->deskripsi,
             'name_ins' => $request->name_ins,
@@ -268,6 +325,7 @@ class AdminController extends Controller
         $image->move(base_path('/public/image_class'), $name_file);
 
         $class = Classes::find($id);
+        $class->jenisCategory = $request->program;
         $class->category = $request->category;
         $class->deskripsi = $request->deskripsi;
         $class->name_ins = $request->name_ins;
@@ -284,7 +342,7 @@ class AdminController extends Controller
     {
         $classcat = Classes::where('category',$category)->get();
         $classes = Classes::all();
-        $users = DB::select("SELECT * FROM `users` WHERE role = 'student' AND class = '$category' ");
+        $users = DB::select("SELECT * FROM `datasiswa` WHERE class_category = '$category' ");
         return view('admin.dataSiswas', compact('users', 'classes', 'classcat'));
     }   
 
@@ -344,14 +402,109 @@ class AdminController extends Controller
         return redirect('/moduls');
     }
 
+    // Program 
+    public function indexprogram(){
+        $category =Category::all();
+        $classes = Classes::all();
+        return view('admin.classes.categoryprogram', compact('category','classes'));
+    }
+
+    public function deleteprogram($id){
+        Category::destroy($id);
+        return Redirect('/program');
+    }
+
+    public function createprogram(Request $request){
+        // 
+        $file = $request->file('image');
+
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+
+        $tujuan_upload = 'programimg';
+        $file->move($tujuan_upload, $nama_file);
+
+        Category::create([
+            'nameCategory'=> $request->program,
+            'image' => $nama_file,
+        ]);
+
+        return redirect('/program');
+    }
+    public function updateprogram(Request $request, $id)
+    {
+        $file = $request->file('image');
+
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+
+        $tujuan_upload = 'programimg';
+        $file->move($tujuan_upload, $nama_file);
+
+        $pro = Category::find($id);
+        $pro->nameCategory = $request->nameCategory;
+        $pro->image = $nama_file;
+        $pro->save();
+
+        return redirect('/program');
+    }
+
+     // Testi
+     public function indextesti(){
+        $testi =Testi::all();
+        $classes = Classes::all();
+        return view('admin.classes.testiclass', compact('testi','classes'));
+    }
+
+    public function deletetesti($id){
+        Testi::destroy($id);
+        return Redirect('/testi');
+    }
+
+    public function createtesti(Request $request){
+        // 
+        $file = $request->file('image');
+
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+
+        $tujuan_upload = 'testiimg';
+        $file->move($tujuan_upload, $nama_file);
+
+        Testi::create([
+            'name'=> $request->name,
+            'classCategory'=> $request->class,
+            'image' => $nama_file,
+            'desc'=> $request->desc,
+        ]);
+
+        return redirect('/testi');
+    }
+    public function updatetesti(Request $request, $id)
+    {
+        $file = $request->file('image');
+
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+
+        $tujuan_upload = 'testiimg';
+        $file->move($tujuan_upload, $nama_file);
+
+        $pro = Testi::find($id);
+        $pro->name= $request->name;
+        $pro->classCategory = $request->classCategory;
+        $pro->image = $nama_file;
+        $pro->desc = $request->desc;
+        $pro->save();
+
+        return redirect('/testi');
+    }
+
+
     // Cetak PDF
     public function cetakbill()
     {
     	$bill = Billings::all();
     	$pdf = PDF::loadview('admin.pdf.databillpdf',['bill'=>$bill]);
-        // return $pdf->stream();
     	return $pdf->download('laporan-Data_Pembayaran.pdf');
     }
+    
     public function cetak_pdfIns()
     {
     	$users = User::where('role', 'instructor')->get();
@@ -362,9 +515,13 @@ class AdminController extends Controller
 
     public function cetak_pdfMember($category)
     {
+        $classcat = Classes::where('category',$category)->get();
+        $classes = Classes::all();
+        $users = DB::select("SELECT * FROM `datasiswa` WHERE class_category = '$category' ");
+        
         $classes = Classes::where('category',$category);
         $class = User::find($category);
-        $users = DB::select("SELECT * FROM `users` WHERE role = 'student' AND class = '$category' ");
+        // $users = DB::select("SELECT FROM `users` WHERE role = 'student' AND class = '$category' ");
     	$pdf = PDF::loadview('admin.pdf.dataMember_pdf',['users'=>$users]);
     	// return $pdf->download('laporan-Data_Member.pdf');
 

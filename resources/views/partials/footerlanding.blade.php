@@ -47,78 +47,50 @@
     </script>
   
 
-<footer class="footer-area">
-    <div class="container">
-            <div class="row">
-                
-                <div class="col-lg-4 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
-                    <h4>Digiclass</h4>
-                    <hr color="gray">
-                    <ul>
-                        <li>Deskripsi</li>
-                        <li>Fitur</li>
-                        <li>Harga</li>
-                    </ul>
-                    {{-- <div class="footer-logo">
-                        <img src="img/logo.png" alt="">
-                    </div> --}}
-                </div>
+  <footer class="site-footer">
+          <div class="container">
+               <div class="row">
 
-                <div class="col-lg-4 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
-                    <h4>Lainnya</h4>
-                    <hr color="gray">
-                    <ul>
-                        <li>Tentang Kami</li>
-                        <li>Developer</li>
-                        <li>Syarat & Ketentuan</li>
-                    </ul>
-                    {{-- <div class="footer-address">
-                        <p>Tentang Kami</p>
-                        <span>Developer</span>
-                        <span>Syarat & Ketentuan</span>
-                    </div> --}}
-                </div>
+                    <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
+                         <h1 class="text-white" data-aos="fade-up" data-aos-delay="100">We make creative
+                              <strong>brands</strong> only.
+                         </h1>
+                    </div>
 
-                
+                    <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="200">
+                         <h4 class="my-4">Contact Info</h4>
 
-                <div id="kontak" class="col-lg-4 col-md-8 mb-4 mb-xl-0 single-footer-widget">
-                    <h4>Kontak & Lokasi</h4>
-                    <hr color="gray">
-                    <!-- <ul>
-                        <li>digiclass@gmail.com</li>
-                        <li>0811-9999-879</li>
-                        <li>Jl. Rambutan No.46 Rt 003/001, Pasir Putih, Kec. Sawangan, Kota Depok, Jawa Barat 16519</li>
-                    </ul> -->
-                    <div id="map"></div>
+                         <p class="mb-1">
+                              <i class="fa fa-phone mr-2 footer-icon"></i>
+                              +62 838-0689-1628
+                         </p>
 
-                    {{-- <div class="form-wrap" id="mc_embed_signup">
-                        <form target="_blank" action="mailto:martdevelopers254@gmail.com"
-                        method="get">
-                        <div class="input-group">
-                            <input type="email" class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '">
-                            <div class="input-group-append">
-                                <button class="btn click-btn" type="submit">
-                                    <i class="fab fa-telegram-plane"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div style="position: absolute; left: -5000px;">
-                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                        </div>
+                         <p>
+                              <a href="#">
+                                   <i class="fa fa-envelope mr-2 footer-icon"></i>
+                                   digiclass@gmail.com
+                              </a>
+                         </p>
+                    </div>
 
-                        <div class="info"></div>
-                        </form>
-                    </div> --}}
+                    <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="300">
+                         <h4 class="my-4">Our Studio</h4>
 
-                </div>
-            </div>
-        <div class="footer-bottom row align-items-center text-center text-lg-left no-gutters">
-            <p class="footer-text m-0 col-lg-8 col-md-12">
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-            {{-- <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
-                <a href="https://github.com/MartMbithi/LMS"><i class="ti-github"></i></a>
-               
-            </div> --}}
-        </div>
-    </div>
-</footer>
+                         <p class="mb-1">
+                              <i class="fa fa-home mr-2 footer-icon"></i>
+                              Jl. Rambutan No.46 Rt 003/001, Pasir Putih, Kec. Sawangan, Kota Depok, Jawa Barat 16519
+                         </p>
+                    </div>
+
+
+                    <div class="col-lg-3 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
+                         <ul class="social-icon">
+                              <li><a href="https://www.instagram.com/nis.seh/?hl=id" class="fa fa-instagram"></a></li>
+                              <li><a href="https://www.youtube.com/channel/UCkos7mWacfKLTm-CuZXlwrA" class="fa fa-youtube"></a></li>
+                              <li><a href="https://wa.widget.web.id/298f95" class="fa fa-whatsapp"></a></li>
+                         </ul>
+                    </div>
+
+               </div>
+          </div>
+     </footer>

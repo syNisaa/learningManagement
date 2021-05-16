@@ -29,36 +29,28 @@
                 <form action="/ass/create" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <tr>
-                        <td>
-                            <p>Name</p>
-                        </td>
+                        <td><p>Name</p></td>
                         <td>
                             <p>{{ Auth::user()->name }}</p>
                             <input type="hidden" name="name" id="name" value="{{ Auth::user()->name }}">
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <p>Class Category </p>
-                        </td>
+                        <td><p>Class Category </p></td>
                         <td>
                             <p>{{$m->class_category}}</p>
                             <input type="hidden" name="class" id="class" value="{{$m->class_category}}">
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <p>Asigment Title</p>
-                        </td>
+                        <td><p>Asigment Title</p></td>
                         <td>
                             <p>{{$m->subject_matter}}</p>
                             <input type="hidden" name="subject" id="suvject" value="{{$m->subject_matter}}">
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <p>Online Text - <small>*Link Blog / Youtube</small></p>
-                        </td>
+                        <td><p>Online Text - <small>*Link Blog / Youtube</small></p></td>
                         <td>
                             <div class="form-group">
                             <input type="text" class="form-control" placeholder="Link" aria-label="Link" id="online" name="online" aria-describedby="basic-addon1">
@@ -66,33 +58,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <p>File Asignment</p>
-                        </td>
+                        <td><p>File Asignment</p></td>
                         <td>
                             <input type="file" name="file" id="file" class="btn btn-secondary">
-                            <!-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-                                Pilih File
-                            </button>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Drop the file here</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore reiciendis atque nostrum perspiciatis repellendus assumenda non quas itaque consequuntur. Perspiciatis omnis quis quos neque cum veritatis porro officia fuga totam.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                           
                         </td>
                     </tr>
                     <tr>

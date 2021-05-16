@@ -241,13 +241,6 @@
                                 <input type="hidden" name="online" id="online" value="{{$a->online_text}}" class="form-control" aria-label="online" aria-describedby="basic-addon1">
 
                             </div>
-                            <!-- 
-                            <div class="form-group">
-                                <label>File Assignment <small>*mohon input ulang file</small></label>
-                                <input type="file" name="file" id="file" value=" {{$a->file}}"class="form-control" aria-label="file" aria-describedby="basic-addon1">
-
-                            </div> -->
-
 
                             <div class="form-group">
                                 <!-- <label>Date</label> -->

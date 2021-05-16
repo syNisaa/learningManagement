@@ -61,8 +61,9 @@
                                     {{-- <th scope="col" class="text-center">Photo</th> --}}
                                     <th scope="col" class="text-center">Nama</th>
                                     <th scope="col" class="text-center">Email</th>
-                                    <th scope="col" class="text-center">Gender</th>
-                                    <th scope="col" class="text-center">Phone</th>
+                                    <th scope="col" class="text-center">Class Category</th>
+                                    <th scope="col" class="text-center">Join</th>
+                                    <th scope="col" class="text-center">Status</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -75,13 +76,18 @@
                                     </td> --}}
                                     <td class="text-center">{{ $u->name }}</td>
                                     <td class="text-center">{{ $u->email }}</td>
-                                    <td class="text-center">{{ $u->gender }}</td>
-                                    <td class="text-center">{{ $u->phone }}</td>
+                                    <td class="text-center">{{ $u->class_category }}</td>
+                                    <td class="text-center">{{ $u->date }}</td>
 
+                                    @if  ($u->status  == "aktif")
+                                    <td class="text-center"><button data-toggle="modal" data-target="#modalStatus{{ $u->id }}" class="btn btn-primary"> {{ $u->status }} </button></td>
+                                    @else
+                                    <td class="text-center"><button data-toggle="modal" data-target="#aktifkan{{ $u->id }}" class="btn btn-danger"> {{ $u->status }} </button></td>
+                                    @endif
                                     <td class="text-center">
-                                        <a data-toggle="modal" data-target="#modalUpdate{{ $u->id }}" class="btn btn-small text-success">
+                                        <!-- <a data-toggle="modal" data-target="#modalUpdate{{ $u->id }}" class="btn btn-small text-success">
                                             <i class="fa fa-edit"></i><span class="ml-2">Edit</span>
-                                        </a>
+                                        </a> -->
                                         <a data-toggle="modal" data-target="#deleteData{{$u->id}}" class="btn btn-small text-danger"><i class=" fa fa-trash"></i><span class="ml-2">Delete</span></a>
                                     </td>
                                 </tr>
@@ -91,56 +97,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal Update -->
-            @foreach($users as $u)
-            <div class="modal fade" id="modalUpdate{{ $u->id }}" tabindex="-1" aria-labelledby="modalUpdate" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Edit Data Instructor</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="/user/updatesiswa/{{$u->id}}">
-                                @csrf
-                                @method('put')
-                                <input type="hidden" value="{{$u->role}}" name="role" id="role">
-                                <input type="hidden" class="form-control" id="id" name="id" value="{{$u->id}}">
-                                <div class="form-group">
-                                    <label for="">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{$u->name}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Email</label>
-                                    <input type="text" class="form-control" id="email" name="email" value="{{ $u->email}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Gender</label>
-                                    <select class="custom-select my-1 mr-sm-2" id="gender" name="gender" value="{{ $u->gender }}">
-                                        <option selected>Choose...</option>
-                                        <option value="laki-laki">Laki-laki</option>
-                                        <option value="perempuan">Perempuan</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $u->phone}}">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Update</button>
-                                </div>
-                            </form>
-                            <!--END FORM UPDATE -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            <!-- End Modal UPDATE -->
 
             <!-- Modal Delete -->
             @foreach($users as $u)
@@ -157,7 +113,7 @@
                             <p>Apakah Anda Yakin Ingin Menghapus Data Ini</p>
                         </div>
                         <div class="modal-footer">
-                            <form action="/user/destroy/{{$u->id}}" method="post">
+                            <form action="/user/destroyst/{{$u->id}}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -169,6 +125,65 @@
             </div>
             @endforeach
             <!-- End Modal Delete  -->
+
+            <!-- Modal Delete -->
+            @foreach($users as $u)
+            <div class="modal" tabindex="-1" id="modalStatus{{$u->id}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">UpdateStatus </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Apakah Anda Yakin Ingin Menonaktifkan akun Ini?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="/user/updatest/{{$u->id}}" method="post">
+                                @csrf
+                                @method('put')
+                                <input type="hidden" name="name" value="{{$u->name}}">
+                                <input type="hidden" name="email" value="{{$u->email}}">
+                                <input type="hidden" name="class" value="{{$u->class_category}}">
+                                <input type="hidden" name="date" value="{{$u->date}}">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Non Aktifkan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+            @foreach($users as $u)
+            <div class="modal" tabindex="-1" id="aktifkan{{$u->id}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">UpdateStatus </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Aktifkan akun Ini?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="/user/updateest/{{$u->id}}" method="post">
+                                @csrf
+                                @method('put')
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Aktifkan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <!-- End Modal Delete  -->
+
         </div>
         <!-- End Container fluid  -->
     </div>

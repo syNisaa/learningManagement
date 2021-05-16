@@ -10,7 +10,7 @@ class Classes extends Model
     protected $table="classes";
     protected $fillable=
     [
-        'id','category','deskripsi','name_ins','kuota','price','image','video'
+        'id','jenisCategory','category','deskripsi','name_ins','kuota','price','image','video'
     ];
 
 }

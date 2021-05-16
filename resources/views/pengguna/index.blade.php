@@ -70,8 +70,8 @@
                 <div class="card-body">
                     <div class="d-flex d-lg-flex d-md-block align-items-center">
                         <div>
-                            <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">{{ $assignment }}</h2>
-                            <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Assignment
+                            <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">{{ $schedulee }}</h2>
+                            <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Schedule
                             </h6>
                         </div>
                         <div class="ml-auto mt-md-3 mt-lg-0">
@@ -80,6 +80,7 @@
                     </div>
                 </div>
             </div>
+           
         </div>
         <!-- End First Cards -->
 
@@ -94,12 +95,15 @@
                     <div class="card shadow mb-6" style="border-radius: 20px">
                         <div class="card-body" href="/addSchedule">
                             <b>
-                                <p class="card-text">{{ $c->type_conference }}</p>
+                                <center><b><a href="/viewmodul">
+                                            <h5 class="card-text" style="color:black;">{{ $c->class_category }}</h5>
+                                        </a></b></center><br>
                             </b>
                             <p class="card-text">Hari <span>{{ $c->days }}</span></p>
                             <p class="card-text">Date : {{ $c->time }}</p>
-                            <p class="card-text">Category Class : {{ $c->class_category }}</p>
-                            <a class="card-text">Link Converence : {{ $c->link_zoom }}</a>
+                            <p class="card-text">Topik :<b> {{ $c->type_conference }}</b></p>
+                            <p class="card-text">Instructor : {{ $c->ins }}</p>
+                            <a class="card-text">Link Converence : <a href="{{ $c->link_zoom }}"> {{ $c->link_zoom }}</a></a>
                         </div>
                     </div>
                 </div>

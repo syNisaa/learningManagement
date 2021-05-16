@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Modul;
 use App\Assignment;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class ModulController extends Controller
 {
@@ -30,19 +31,24 @@ class ModulController extends Controller
     }
 
     // List Modul
-    public function list()
+    public function list(Request $request)
     {
-        $uclass= Auth::user()->class;
-        $modul = Modul::where('class_category', $uclass)->get();
-        return view('pengguna.modulblade.list_modul', ['modul' => $modul]);
+        if($request->session()->has('class')){
+            $modul = Modul::where('class_category', $request->session()->get('class'))->get();
+            $classes = Classes::all();
+            return view('pengguna.modulblade.list_modul', compact('modul')); 
+		}else{
+			echo 'Tidak ada data dalam session.';
+        }
     }
 
     public function listdetail($id)
     {
         $modul = Modul::where('id', $id)->get();
+        $ins = User::where('role','instructor')->get();
         $status = Assignment::where('status', 'selesai')->where('name',Auth::user()->name)->get();
-        return view('pengguna.modulblade.modulslihat', compact('modul','status'));
-        // echo($status);
+        return view('pengguna.modulblade.modulslihat', compact('modul','status','ins'));
+  
     }
 
     public function create(Request $request)
@@ -82,6 +88,7 @@ class ModulController extends Controller
             'learning_moduls' => $nama_file,
             'video_tutorials' => $request->video,
             'class_category' => $request->class,
+            'assignment' => $request->assignment,
             'due_date' => $request->due
         ]);
 
@@ -115,6 +122,7 @@ class ModulController extends Controller
         $update->learning_moduls = $nama_file;
         $update->video_tutorials = $request->video;
         $update->class_category = $request->class;
+        $update->assignment = $request->assignment;
         $update->due_date = $request->due;
         $update->save();
 

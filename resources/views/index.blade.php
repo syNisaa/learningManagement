@@ -1,237 +1,251 @@
-<!doctype html>
-<html lang="en">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<title>Home-Digiclass</title>
 @include('partials.headlanding')
 
 <body>
 
-    <!--================Header Menu Area =================-->
-    @include('partials.navlanding')
-    <!--================Header Menu Area =================-->
+     <!-- MENU BAR -->
+     <nav class="navbar navbar-expand-lg">
+          <div class="container">
+               <a class="navbar-brand" href="index.html">
+                    <i class="fa fa-line-chart"></i>
+                    Digiclass Indonesia
+               </a>
 
-    <!--================Home Banner Area =================-->
-    <section class="home_banner_area">
-        <div class="banner_inner d-flex align-items-center">
-            <div class="overlay"></div>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+               </button>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 offset-lg-6 col-xl-5 offset-xl-7">
-                        <div class="banner_content" id="profile">
-                            <h3>Profile</h3>
-                            <h3>DIGICLASS<br>INDONESIA</h3>
-                            <h5>Tempat Belajar Digital Marketing Paling Seru.</h5>
-                            <p>Digiclass adalah Mentoring & Workshop Online bisnis online menggunakan paid traffic
-                                Facebook & Instagram Ads yang berlangsung selama 30 hari dan mengupas Materi dan Praktek
-                                CARA SIMPLE PUNYA BISNIS ONLINE YANG PROFITABLE.</p>
-                            <a class="banner_btn" href="#core_features">Kelas<i class="ti-arrow-right"></i></a>
-                        </div>
+               <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                         <li class="nav-item">
+                              <a href="/" class="nav-link smoothScroll">Digiclass</a>
+                         </li>
+                         <li class="nav-item">
+                              <a href="/digiclassagency" class="nav-link">Digiclass Agency</a>
+                         </li>
+                         <li class="nav-item">
+                              <a href="/registerst" class="nav-link contact">Login Member</a>
+                         </li>
+                    </ul>
+               </div>
+          </div>
+     </nav>
+
+
+     <!-- HERO -->
+     <section class="hero hero-bg d-flex justify-content-center align-items-center">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
+                         <div class="hero-text">
+
+                              <h1 class="text-white" data-aos="fade-up">We Are Ready For Your Bussines!</h1>
+                              <!-- <a href="https://wa.widget.web.id/ae56aa" target="_blank"><img src="https://wa.widget.web.id/assets/img/tombol-wa.png"></a> -->
+
+                              <a href="https://wa.widget.w eb.id/ae56aa" target="_blank" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Hubungi kami!</a>
+
+                         </div>
                     </div>
-                </div>
-            </div>
 
-        </div>
-    </section>
-    <!--================End Home Banner Area =================-->
+                    <div class="col-lg-6 col-12">
+                         <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
 
-    <!--================Service  Area =================-->
-
-    <section id="core_features" class="service-area area-padding">
-
-        <!-- Start First Cards -->
-        <div class="card shadow mb-4 mt-3">
-            @if($class->count() > 0)
-            <div class="row ml-2 mr-2 mb-4">
-                @foreach($class as $c)
-                <div class="col-md-4 mt-4" style="margin-top:-9%;">
-                    <div class="card mb-6" style="border-radius: 20px">
-                        <div class="card-body" href="/addSchedule">
-                            <img class="card-img-top center" src="{{asset('image_class/'.$c->image)}}" alt="Card image cap" style="width: 400px; height:300px;"><br>
-                            <div class="service-content">
-                                <br><h3 style="text-align: center; color:black;">{{$c->category}}</h3>
-                                <center><button class="btn btn-secondary" data-toggle="modal" data-target="#modal{{$c->id}}">
-                                    Read More
-                                </button></center>
-
-                            </div>
-                        </div>
+                              <img src="landingrev/images/work.jpg" class="img-fluid" style="border-radius: 100%; " alt="working girl">
+                         </div>
                     </div>
-                    </a>
-                </div>
-                @endforeach
-            </div>
-            @else
-            <div class="row justify-content-center" style="margin-top: 15%">
-                <div class="col text-center">
-                    <b>Class Belum Tersedia</b>
-                </div>
-            </div>
-            @endif
-            <!-- End First Cards -->
 
-    </section>
+               </div>
+          </div>
+     </section>
 
-    @foreach($class as $c)
-    <div class="modal" tabindex="-1" id="modal{{$c->id}}">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Class {{$c->category}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" style="height:300px;" src="{{ asset('image_class/'.$c->image) }}" alt="First slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Digiclass Indonesia </h5>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <embed src="{{$c->video}}" type="" style="height:300px; width:100%;">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Digiclass Indonesia</h5>
-                                    </div>
-                                </div>
 
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
+     <!-- ABOUT -->
+     <section class="about section-padding pb-0" id="about">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-lg-7 mx-auto col-md-10 col-12">
+                         <div class="about-info">
+
+                              <h2 class="mb-4" data-aos="fade-up"><strong>Digiclass Indonesia</strong> </h2>
+
+                              <p class="mb-0" data-aos="fade-up">Digiclass indonesia adalah Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+                                   <br><br>
+
+                                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, illo? Minima incidunt, nostrum maxime blanditiis fugiat nobis saepe. Eligendi velit amet distinctio voluptas libero impedit mollitia repudiandae deserunt in cupiditate.
+                              </p>
+                         </div>
+
+                         <div class="about-image" data-aos="fade-up" data-aos-delay="200">
+
+                              <img src="landingrev/images/office.png" class="img-fluid" alt="office">
+                         </div>
                     </div>
-                    <p>{{$c->deskripsi}}</p>
-                    <center><h3>Rp. {{$c->price}}</h3></center>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="/class{{$c->id}}" class="btn btn-primary">Join</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    @endforeach
-    <!--================Service Area end =================-->
+               </div>
+          </div>
+     </section>
 
+     <!-- keunggulan -->
+     <section class="project-detail section-padding">
+          <div class="container">
+               <div class="row">
 
-    <!--================About  Area =================-->
-    {{-- <section class="about-area area-padding-bottom"> --}}
-    <div class="container" style="margin-top: 1%;">
-        <div class="row align-items-center justify-content-center">
-            <div class="row">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block" src="{{ url('images/amar.png') }} " alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block" src="{{ url('images/ben.png') }} " alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block" src="{{ url('images/wijaya.png') }} " alt="Third slide">
-                        </div>
+                    <div class="col-lg-6 col-md-6 col-12 mb-5">
+
+                         <img src="landingrev/images/project/project-detail/personal-website.png" class="img-fluid" alt="personal website" data-aos="fade-up">
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
 
+                    <div class="col-lg-5 col-md-6 mr-lg-auto mt-lg-5 col-12" data-aos="fade-up" data-aos-delay="200">
 
+                         <h2>Keunggulan Digiclass Indonesia</h2>
 
-        </div>
-    </div>
-    {{-- </section> --}}
-    <!--================About Area End =================-->
+                         <p class="mt-3 mb-4">Keunggulan yang dimiliki oleh Digiclas indonesa</p>
 
-    <!--================Feature  Area =================-->
-    {{-- <section class="feature-area area-padding bg_one"> --}}
-    {{-- <div class="container">
-            <div class="row align-items-center">
-
-                <div class="offset-lg-6 col-lg-6">
-                    <div class="area-heading light">
-                        <h4>Learning Management System on <br>Mobile (Smartphones)</h4>
-                        <p>The following features makes this platform one of the best lite-weight opensource Learning Management System:</p>
+                         <ul class="list-detail">
+                              <li><span>Curabitur commodo a sapien non</span></li>
+                              <li><span>Sed facilisis convallis turpis</span></li>
+                              <li><span>Quisque placerat augue neque</span></li>
+                              <li><span>Nullam fringilla arcu a tortor</span></li>
+                         </ul>
                     </div>
-                    <div class="row">
-                        <div class="col-">
-                            <div class="single-feature d-flex">
-                                <div class="feature-icon">
-                                    <i class="ti-layers"></i>
-                                </div>
-                                <div class="single-feature-content">
-                                    <h5>Super responsive design</h5>
-                                    <p>This feature allows the system to be viewed and accessed not only on devices with screens having large aspect ratio but also to devices with small aspect ratios like smartphones and tablets 
-                                    without any distortion, data loss or any front end bugs.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-">
-                            <div class="single-feature d-flex">
-                                <div class="feature-icon">
-                                    <i class="ti-layers"></i>
-                                </div>
-                                <div class="single-feature-content">
-                                    <h5>Lightweight</h5>
-                                    <p>Despite of complex backend this system is crafted with cutting edge practices which allows small devices like mobile phones to save an eact copy of the system in their browsers cache which speeds 
-                                    up the entire load and execution process thus making the learning activity fun and intresting.</p>
-                                </div>
-                            </div>
-                        </div>
+               </div>
+
+
+
+          </div>
+     </section>
+
+
+     <!-- PROJECT -->
+     <section class="project section-padding" id="project">
+          <div class="container-fluid">
+               <div class="row">
+
+                    <div class="col-lg-12 col-12">
+
+                         <h2 class="mb-5 text-center" data-aos="fade-up">
+                              Program Terbaik
+                              <strong>Digiclass Indonesia</strong>
+                         </h2>
+
+                         <div class="owl-carousel owl-theme" id="project-slide">
+                              @foreach ($category as $ct)
+                              <div class="item project-wrapper" data-aos="fade-up" data-aos-delay="100">
+                                   <img src="{{asset('programimg/'.$ct->image)}}" class="img-fluid" alt="project image" style="width: 700px; height:400px">
+
+                                   <div class="project-info">
+                                        <small>{{$ct->nameCategory}}</small>
+
+                                        <h3>
+                                             <a href="/classcategory{{$ct->nameCategory}}">
+                                                  <span>{{$ct->nameCategory}}</span>
+                                                  <i class="fa fa-angle-right project-icon"></i>
+                                             </a>
+                                        </h3>
+                                   </div>
+                              </div>
+
+
+                              @endforeach
+                         </div>
+
                     </div>
-                </div>
-            </div>
-        </div> --}}
-    {{-- </section> --}}
-    <!--================Feature Area End =================-->
 
-    <!-- ================ start footer Area ================= -->
-    @include('partials.footerlanding')
-    <!-- ================ End footer Area ================= -->
+               </div>
+          </div>
+     </section>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script> -->
-    <script src="{{asset('vendors/owl-carousel/owl.carousel.min.js')}}"></script>
-    <!-- <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    
-    <script src="js/theme.js"></script> -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+     <!-- TESTIMONIAL -->
+     <section class="testimonial section-padding">
+          <div class="container">
+               <div class="row">
+
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                         <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                   <div class="row">
+
+                                        <div class="col-lg-6 col-md-5 col-12">
+                                             <div class="contact-image" data-aos="fade-up">
+
+                                                  <img src="landingrev/images/female-avatar.png" class="img-fluid" alt="website" style="width: 400px; height:550px">
+                                             </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-7 col-12">
+                                             <h4 class="my-5 pt-3" data-aos="fade-up" data-aos-delay="100">Pendapat CEO</h4>
+
+                                             <div class="quote" data-aos="fade-up" data-aos-delay="200"></div>
+
+                                             <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Saya yakin, Digiclass indonesia mampu memajukan bisnis kalian. Lihat Testimoni berikut</h2>
+
+                                             <p data-aos="fade-up" data-aos-delay="400">
+                                                  <strong>Ibu Erning </strong>
+
+                                                  <span class="mx-1">/</span>
+
+                                                  <small>Digiclass Indoneisa (CEO)</small>
+                                             </p>
+                                        </div>
+
+                                   </div>
+                              </div>
+                              @foreach ($testi as $t)
+                              <div class="carousel-item">
+                                   <div class="row">
+
+                                        <div class="col-lg-6 col-md-5 col-12">
+                                             <div class="contact-image" data-aos="fade-up">
+
+                                                  <img src="{{asset('testiimg/'.$t->image)}}" class="img-fluid" alt="website" style="width: 400px; height:550px">
+                                             </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-7 col-12">
+                                             <h4 class="my-5 pt-3" data-aos="fade-up" data-aos-delay="100">Testimoni Client</h4>
+
+                                             <div class="quote" data-aos="fade-up" data-aos-delay="200"></div>
+
+                                             <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">{{$t->desc}}</h2>
+
+                                             <p data-aos="fade-up" data-aos-delay="400">
+                                                  <strong>{{$t->name}}</strong>
+
+                                                  <span class="mx-1">/</span>
+
+                                                  <small>{{$t->classCategory}}</small>
+                                             </p>
+                                        </div>
+
+                                   </div>
+                              </div>
+                              @endforeach
+
+                              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                   <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                   <span class="sr-only">Next</span>
+                              </a>
+                         </div>
+
+                    </div>
+               </div>
+     </section>
+
+
+
+
+     @include('partials.footerlanding')
+
+
+
 </body>
 
 </html>

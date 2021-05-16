@@ -8,6 +8,7 @@ use App\Classes;
 use App\Modul;
 use Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AssignmentController extends Controller
 {
@@ -18,11 +19,18 @@ class AssignmentController extends Controller
         return view('pengguna.upload_ass', ['modul'=>$modul]);
     }
 
-    public function listuser()
+    public function listuser(Request $request)
     {
-        $user = Auth::user()->name;
-        $ass = Assignment::where('name', $user)->get();
-        return view('pengguna.listass', compact('user','ass'));
+        
+        if($request->session()->has('class')){
+            $user = Auth::user()->name;
+            $classs = $request->session()->get('class');
+            $ass = DB::select("SELECT * FROM `penugasans` WHERE class_category = '$classs' AND `name` ='$user' ");
+            $classes = Classes::all();
+            return view('pengguna.listass', compact('user','ass'));
+		}else{
+			echo 'Tidak ada data dalam session.';
+        }
     }
 
     public function index()
@@ -83,22 +91,11 @@ class AssignmentController extends Controller
 
     public function update(Request $request, $id){
 
-        // Penugasan
-        // $file = $request->file('file');
- 
-		// $nama_file = time()."_".$file->getClientOriginalName();
- 
-		// $tujuan_upload = 'tugas_siswa';
-        // $file->move($tujuan_upload,$nama_file);
-
-
         $update = Assignment::find($id);
         $update->name= $request->name;
         $update->class_category = $request->class;
         $update->subject_matter = $request->subject;
         $update->online_text = $request->online;
-        // $update->file = $nama_file;
-        $update->date = $request->due;
         $update->score = $request->score;
         $update->save();
 
@@ -106,15 +103,6 @@ class AssignmentController extends Controller
     }
 
     public function updateins(Request $request, $id){
-
-        // Penugasan
-        // $file = $request->file('file');
- 
-		// $nama_file = time()."_".$file->getClientOriginalName();
- 
-		// $tujuan_upload = 'tugas_siswa';
-        // $file->move($tujuan_upload,$nama_file);
-
 
         $update = Assignment::find($id);
         $update->name= $request->name;

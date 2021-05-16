@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Schedule;
 use App\Classes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class ScheduleController extends Controller
 {
@@ -14,11 +16,15 @@ class ScheduleController extends Controller
         $classes = Classes::all();
         return view('admin.schedule.index', compact('schedule', 'classes'));
     }
-    public function indexsiswa(){
-        $uclass = Auth::user()->class;
-        $jadwals = Schedule::where('class_category', $uclass )->get();
-        $classes = Classes::all();
-        return view('pengguna.schedule', compact('jadwals', 'classes'));
+    
+    public function indexsiswa(Request $request){
+        if($request->session()->has('class')){
+            $jadwals = Schedule::where('class_category', $request->session()->get('class'))->get();
+            $classes = Classes::all();
+            return view('pengguna.schedule', compact('jadwals', 'classes'));    
+		}else{
+			echo 'Tidak ada data dalam session.';
+        }
     }
 
     public function create(Request $request){
@@ -28,7 +34,7 @@ class ScheduleController extends Controller
             'time' => $request->time,
             'class_category' => $request->class,
             'link_zoom' => $request->link,
-            // 'due_date' => $request->due
+            'ins' => Auth::user()->name
         ]);
 
         return redirect('/schedule');
@@ -47,7 +53,7 @@ class ScheduleController extends Controller
         $update->time = $request->time;
         $update->class_category = $request->class;
         $update->link_zoom = $request->link;
-        // $update->due_date = $request->due;
+        $update->ins = Auth::user()->name;
         $update->save();
 
         return redirect('/schedule');

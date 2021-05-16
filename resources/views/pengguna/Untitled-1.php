@@ -1,0 +1,217 @@
+<title>Home-Digiclass</title>
+@include('partials.headlanding')
+
+<body>
+    <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fa fa-line-chart"></i>
+                Digiclass Indonesia
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a data-toggle="modal" data-target="#logoutModal" class="nav-link smoothScroll" title="Class In Digiclass" style="color: wheat;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @include('partials.logmodal')
+    <!-- HERO -->
+    <section>
+        <div class="container"><br>
+            <center><b>
+                    <font face="comic MS sans" size="6">Kelas yang kamu ikuti</font><br>
+                </b></center>
+            <div class="row"><br>
+                @foreach($student as $s)
+                <div class="card mt-4" style="width: 17rem; margin-right:3px; margin-left:5px;">
+                    <div class="card-body">
+                        <center>
+                            @if( $s->status == "aktif")
+                            <a href="/dashstudent{{$s->class_category}}">
+                                <h5 class="card-title">{{$s->class_category}}</h5>
+                            </a>
+                            @else
+                            <a data-toggle="modal" data-target="#status">
+                                <h5 class="card-title">{{$s->class_category}}</h5>
+                            </a>
+                            @endif
+                            <h6>Join : {{$s->date}}</h6>
+                        </center>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container"><br>
+            <hr>
+            <center>
+                <font face="comic MS sans" size="6">Kelas yang ada Di Digiclass Indonesia</font><br>
+            </center>
+            <form method="POST" action="/datasiswa">
+            <div class="row"><br>
+                @foreach($classes as $c)
+                <div class="card mt-4" style="width: 17rem; margin-right:3px; margin-left:5px;">
+                    <div class="card-body">
+                        <center><a data-toggle="modal" data-target="#modal{{$c->id}}">
+                                <h5 class="card-title">{{$c->category}}</h5>
+                                <font face="Comic MS sans">Jika anda tertarik klik Join</font><br>
+                            </a>
+                            
+                                @csrf
+                                <input type="hidden" name="class" value="{{$c->category}}">
+                                <input type="hidden" name="price" value="{{$c->price}}">
+                                <button type="submit" class="btn btn-outline-primary mt-3">Join
+                            
+                        </center>
+                    </div>
+                </div></form>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" tabindex="-1" id="status">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Status </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Status Kamu Non-Aktif Atau Waktu berlangganan Sudah habis, silahkan hubungi admin</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @foreach($classes as $c)
+    <div class="modal" tabindex="-1" id="modal{{$c->id}}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Class {{$c->category}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" style="height:300px;" src="{{ asset('image_class/'.$c->image) }}" alt="First slide">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Digiclass Indonesia </h5>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <embed src="{{$c->video}}" type="" style="height:300px; width:100%;">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Digiclass Indonesia</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div><br>
+                    <center>
+                        <font face="Comic MS sans" size="4">{{$c->deskripsi}}</font>
+                        <b>
+                            <h3>Rp. {{$c->price}}</h3>
+                        </b>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    @csrf
+                    <input type="hidden" name="class" value="{{$c->category}}">
+                    <input type="hidden" name="price" value="{{$c->price}}">
+                    <button type="submit" class="btn btn-primary">Join</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-y5TtpIOlSRzwbREL"></script>
+
+    <script>
+        document.querySelector('#form-bayar').addEventListener('submit', async e => {
+            e.preventDefault()
+            const formData = new FormData(e.target)
+            const data = {
+                price: formData.get('price'),
+                class: formData.get('class'),
+            }
+            const price = formData.get('price')
+            const p = parseInt(price)
+            console.log(p)
+
+            const response = await fetch("{{ route('getpayment') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{csrf_token()}}'
+                },
+                body: JSON.stringify(data)
+            })
+
+            const result = await response.text()
+            snap.pay(result, {
+                onSuccess: async function(result) {
+                    console.log('success');
+                    console.log(result);
+                    const register = await fetch("{{ route('datasiswa') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{csrf_token()}}'
+                        },
+                        body: JSON.stringify({
+                            class: formData.get('class'),
+                            price: formData.get('price')
+                        })
+                    })
+                },
+                onPending: function(result) {
+                    console.log('pending');
+                    console.log(result);
+                },
+                onError: function(result) {
+                    console.log('error');
+                    console.log(result);
+                },
+                onClose: function() {
+                    console.log('customer closed the popup without finishing the payment');
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

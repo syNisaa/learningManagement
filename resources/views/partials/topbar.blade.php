@@ -10,7 +10,9 @@
             <!-- ============================================================== -->
             <div class="navbar-brand">
                 <!-- Logo icon -->
-                <a href="index.html">
+                @if (auth()->user()->role == "student")
+                
+                <a href="/homestudent">
                     <b class="logo-icon">
                         <!-- Dark Logo icon -->
                         <img src="{{ asset ('images/digiclass-logo.png')}}" alt="homepage" class="dark-logo" />
@@ -26,6 +28,23 @@
                         <img src="{{asset ('images/logo-light-text.png')}}" class="light-logo" alt="homepage" />
                     </span>
                 </a>
+                @else
+                <b class="logo-icon">
+                        <!-- Dark Logo icon -->
+                        <img src="{{ asset ('images/digiclass-logo.png')}}" alt="homepage" class="dark-logo" />
+                        <!-- Light Logo icon -->
+                        <img src="{{asset ('images/logo-icon.png')}}" alt="homepage" class="light-logo" />
+                    </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text -->
+                    <span class="logo-text">
+                        <!-- dark Logo text -->
+                        <img src="{{asset ('images/digiclass-text.jpg')}}" alt="homepage" class="dark-logo" />
+                        <!-- Light Logo text -->
+                        <img src="{{asset ('images/logo-light-text.png')}}" class="light-logo" alt="homepage" />
+                    </span>
+                @endif
+
             </div>
             <!-- ============================================================== -->
             <!-- End Logo -->

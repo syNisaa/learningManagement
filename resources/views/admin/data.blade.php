@@ -172,6 +172,25 @@
                                 </div>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="text" class="form-control" value="12345678" aria-label="Role" aria-describedby="basic-addon1" readonly>
+                                @if($errors->has('role'))
+                                <div class="text-danger">
+                                    {{ $errors->first('role')}}
+                                </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label>Class Category </label>
+                                <input type="text" name="class" id="class" class="form-control" placeholder="class" aria-label="Name" aria-describedby="basic-addon1">
+                                @if($errors->has('class'))
+                                <div class="text-danger">
+                                    {{ $errors->first('class')}}
+                                </div>
+                                @endif
+                            </div>
+                            
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

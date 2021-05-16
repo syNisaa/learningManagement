@@ -66,6 +66,7 @@
                                 <th scope="col" class="text-center">Learning Moduls</th>
                                 <th scope="col" class="text-center">Video Tutorials</th>
                                 <th scope="col" class="text-center">Class Category</th>
+                                <th scope="col" class="text-center">Assignment</th>
                                 <th scope="col" class="text-center">Due Date</th>
                             </tr>
                         </thead>
@@ -81,6 +82,7 @@
                                 <td class="text-center"><button type="button" data-toggle="modal" data-target="#videoModul{{ $m->id }}" class="btn btn-outline-dark">Video Tutorial</button></td>
 
                                 <td class="text-center">{{ $m->class_category }}</td>
+                                <td class="text-center">{{ $m->assignment }}</td>
                                 <td class="text-center">{{ $m->due_date }}</td>
 
 
@@ -200,6 +202,15 @@
                                 </div>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label>Assignment</label>
+                                <input type="text" name="assignment" id="assignment" class="form-control" placeholder="Basic Competencies" aria-label="basic" aria-describedby="basic-addon1">
+                                @if($errors->has('basic'))
+                                <div class="text-danger">
+                                    {{ $errors->first('basic')}}
+                                </div>
+                                @endif
+                            </div>
 
                             <div class="form-group">
                                 <label>Due Date</label>
@@ -285,6 +296,11 @@
                                     {{ $errors->first('class')}}
                                 </div>
                                 @endif
+
+                            <div class="form-group">
+                                <label>Assignment</label>
+                                <input type="text" name="assignment" id="assignment" value="{{$m->assignment}}" class="form-control" placeholder="Basic Competencies" aria-label="basic" aria-describedby="basic-addon1">
+                       
                             </div>
 
                             <div class="form-group">

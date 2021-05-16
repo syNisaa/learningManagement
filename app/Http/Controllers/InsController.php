@@ -12,13 +12,14 @@ use App\Schedule;
 use App\Assignment;
 use App\Instansi;
 use App\Modul;
+use App\Datasiswa;
 
 class InsController extends Controller
 {
     public function dashboardins()
     {
         $class = Auth::user()->class;
-        $countStudent = User::where('role', 'student')->where('class', $class)->count();
+        $countStudent = Datasiswa::where('class_category', $class)->count();
         $countJadwal = Schedule::where('class_category',$class)->count();
         $countClass = User::where('class', $class)->count();
         $jadwals = Schedule::where('class_category',$class)->get();

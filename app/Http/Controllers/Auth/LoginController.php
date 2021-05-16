@@ -39,7 +39,7 @@ class LoginController extends Controller
                 break;
 
             case 'student':
-                $this->redirectTo = '/dashstudent';
+                $this->redirectTo = '/homestudent';
                 return $this->redirectTo;
                 break;
 

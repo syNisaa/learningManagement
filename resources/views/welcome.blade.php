@@ -11,7 +11,7 @@
 
         <script type="text/javascript"
         src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="SB-Mid-client-y5TtpIOlSRzwbREL"></script>
+        data-client-key="SB-Mid-client-PIA8iz4TMEuVhRmt"></script>
 
         <!-- Styles -->
         <style>
@@ -111,7 +111,7 @@
     <script>
         document.querySelector('#btn-bayar').addEventListener
         ('click', async () => {
-            const response = await fetch("{{ route('payment') }}")
+            const response = await fetch("{{ route('getpayment') }}")
             const token = await response.text()
             snap.pay(token)
             // fetch("{{ route('payment') }}")

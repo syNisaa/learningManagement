@@ -74,7 +74,7 @@
                                 <td class="text-center">{{ $a->subject_matter }}</td>
                                 <td class="text-center">{{ $a->online_text }}</td>
                                 <td>
-                                    <embed src="{{asset('tugas_siswa/'.$a->file)}}" type="">
+                                    <embed src="{{asset('tugas_siswa/'.$a->file)}}" type="" style="width: 230px; height:150px;">
                                 </td>
                                 <td class="text-center">{{ $a->date }}</td>
                                 <td class="text-center">{{ $a->score }} </td>

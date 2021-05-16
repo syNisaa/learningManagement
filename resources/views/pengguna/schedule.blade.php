@@ -50,7 +50,7 @@
         <!-- Start Cards Jadwal -->
         <div class="card shadow mb-4 mt-3">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold">Data Jadwal </h6>
+                <h5 class="m-0 font-weight-bold">Data Jadwal </h5>
             </div>
             @if($jadwals->count() > 0)
             <div class="row ml-2 mr-2">
@@ -59,12 +59,13 @@
                     <div class="card shadow mb-6" style="border-radius: 20px">
                         <div class="card-body" href="/addSchedule">
                             <b>
-                                <p class="card-text">{{ $c->type_conference }}</p>
+                                <center><b><a href="/viewmodul"><h5 class="card-text" style="color:black;">{{ $c->class_category }}</h5></a></b></center><br>
                             </b>
                             <p class="card-text">Hari <span>{{ $c->days }}</span></p>
                             <p class="card-text">Date : {{ $c->time }}</p>
-                            <p class="card-text">Category Class : {{ $c->class_category }}</p>
-                            <a class="card-text">Link Converence : {{ $c->link_zoom }}</a>
+                            <p class="card-text">Topik :<b> {{ $c->type_conference }}</b></p>
+                            <p class="card-text">Instructor : {{ $c->ins }}</p>
+                            <a class="card-text">Link Converence : <a href="{{ $c->link_zoom }}"> {{ $c->link_zoom }}</a></a>
                         </div>
                     </div>
                 </div>

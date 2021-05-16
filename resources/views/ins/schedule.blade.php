@@ -68,7 +68,7 @@
                     <div class="card shadow mb-6" style="border-radius: 20px">
                         <div class="card-body" href="/addSchedule">
                             <b>
-                                <p class="card-text">{{ $s->type_conference }}</p>
+                                <h5 class="card-text">{{ $s->type_conference }}</h5>
                             </b>
                             <p class="card-text">Hari <span>{{ $s->days }}</span></p>
                             <p class="card-text">Date : {{ $s->time }}</p>

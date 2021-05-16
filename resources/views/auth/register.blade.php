@@ -52,26 +52,16 @@
                 </div>
             </div>
             <div class="form sign-up">
-                <!--  action="/dataregister"-->
-                <form method="post" id="form-bayar">
+                <!--  action="/dataregister" id="form-bayar"-->
+                <form method="post" action="/dataregister">
                     @csrf
-                    @foreach($class as $c)
                     <center>
-                        <h3>Sign Up
-                            <!-- <select class="custom-select my-1 mr-sm-2" id="class" name="class" @error('class') is-invalid @enderror value="{{ old('class') }}" required autocomplete="class">
-                                <option selected>Choose...</option>
-                                <option value="Digital Marketing">Digital Marketing</option>
-                                <option value="Pelatihan Guru">Pelatihan guru</option>
-                            </select> -->
-                            <input type="hidden" name="class" id="class" value="{{$c->category}}" >
-                        </h3>
+                        <h3>Sign Up</h3>
                     </center>
-                    <input id="price" type="hidden" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $c->price}}" required autocomplete="price">
-                    <!-- <input id="class" type="hidden" class="form-control @error('class') is-invalid @enderror" name="class" value="{{ $c->category}}" required autocomplete="class"> -->
-                    @endforeach
+                    
                     <label>
                         <span>Name |</span> <select class="custom-select my-1 mr-sm-2" id="gender" name="gender" @error('gender') is-invalid @enderror value="{{ old('gender') }}" required autocomplete="gender">
-                            <option selected>Choose...</option>
+                            <option selected>Choose Gender..</option>
                             <option value="laki-laki">Laki-laki</option>
                             <option value="perempuan">Perempuan</option>
                         </select>
@@ -80,7 +70,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -118,7 +108,14 @@
                     </label>
                     <label>
                         <span>Instansi</span>
-                        <input id="instansi" type="text" class="form-control @error('instansi') is-invalid @enderror" name="instansi" value="{{ old('instansi') }}" required autocomplete="instansi">
+                        <select class="custom-select my-1 mr-sm-2" id="instansi" name="instansi" class="form-control" placeholder="Instansi" aria-label="class" aria-describedby="basic-addon1">
+                            <option value="0" selected disabled>Choose Instansi..</option>
+                            @foreach ($instansi as $c)
+                            <option value="{{ $c->instansi }}">
+                                {{ $c->instansi }}
+                            </option>
+                            @endforeach
+                        </select>
 
                         @error('instansi')
                         <span class="invalid-feedback" role="alert">
@@ -160,8 +157,6 @@
                 body: JSON.stringify(data)
             })
             const result = await response.text()
-            // alert(result)
-            // snap.pay(result)
             snap.pay(result, {
                 onSuccess: async function(result) {
                     console.log('success');

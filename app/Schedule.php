@@ -9,13 +9,10 @@ class Schedule extends Model
     protected $table = "jadwals";
     protected $fillable=
     [
-        'days','type_conference', 'time','class_category','link_zoom'
+        'days','type_conference', 'time','class_category','link_zoom','ins'
     ];
 
-    public function schedule()
-    {
-        // return $this->
-    }
+    
 
     public function class()
     {
