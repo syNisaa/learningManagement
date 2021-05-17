@@ -41,10 +41,12 @@
     <div class="container">
         <div class="card shadow mt-4 mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data Billings
-                    <span><a href="/databill/cetakpdf" target="_blank" class="text-danger float-right" style="margin-right: 10px">
-                            <i class="fas fa-file-pdf"><span class="ml-2">Export PDF</span></i>
-                        </a></span>
+                <h6 class="m-0 font-weight-bold text-primary">Data Product
+                    <span>
+                        <a data-toggle="modal" data-target="#addData" class="text-primary float-right">
+                            <i class="fas fa-plus"><span class="ml-2">Add Data</span></i></a>
+
+                    </span>
                 </h6>
             </div>
 
@@ -54,22 +56,28 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col" class="text-center">NO</th>
-                                <th scope="col" class="text-center">Nama </th>
-                                <th scope="col" class="text-center">class</th>
+                                <th scope="col" class="text-center">Name Product </th>
+                                <th scope="col" class="text-center">Description</th>
                                 <th scope="col" class="text-center">price</th>
-                                <th scope="col" class="text-center">Date</th>
+                                <th scope="col" class="text-center">Image Product</th>
+                                <th scope="col" class="text-center">Name Team</th>
+                                <th scope="col" class="text-center">Image Team</th>
+                                <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($bill as $b)
+                            @foreach($product as $p)
                             <tr>
                                 <th scope="row" class="text-center">{{ $loop->iteration }}</th>
-                                <td class="text-center">{{$b->name}}</td>
-                                <td class="text-center">{{$b->class}}</td>
-                                <td class="text-center">{{$b->price}}</td>
-                                <td class="text-center">{{$b->date}}</td>
-                                <td class="text-center"><a data-toggle="modal" data-target="#deletebill{{ $b->id }}" class="btn btn-small text-danger"><i class=" fa fa-trash"></i><span class="ml-2">Delete</span></a></td>
+                                <td class="text-center">{{$p->name}}</td>
+                                <td class="text-center">{{$p->desc}}</td>
+                                <td class="text-center">{{$p->price}}</td>
+                                <td class="text-center"><img style="width: 250px; height:200px;" src="{{asset('produkfile/'.$p->image)}}" alt=""></td>
+                                <td class="text-center">{{$p->name_pj}}</td>
+                                <td class="text-center"><img style="width: 250px; height:200px;" src="{{asset('produkfile/'.$p->image_pj)}}" alt=""></td>
+                                <td class="text-center">{{$p->status}}</td>
+                                <td class="text-center"><a data-toggle="modal" data-target="#deletebill{{ $p->id }}" class="btn btn-small text-danger"><i class=" fa fa-trash"></i><span class="ml-2">Delete</span></a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -78,8 +86,89 @@
             </div>
         </div>
 
-        @foreach($bill as $b)
-        <div class="modal" tabindex="-1" id="deletebill{{$b->id}}">
+        <div class="modal" tabindex="-1" id="addData">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Data Product </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/pro/create" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label>Name </label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name Product" aria-label="name" aria-describedby="basic-addon1">
+                                @if($errors->has('name'))
+                                <div class="text-danger">
+                                    {{ $errors->first('name')}}
+                                </div>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label>Description </label>
+                                <input type="text" name="desc" id="desc" class="form-control" placeholder="Description" aria-label="desc" aria-describedby="basic-addon1">
+                                @if($errors->has('desc'))
+                                <div class="text-danger">
+                                    {{ $errors->first('desc')}}
+                                </div>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label>Price </label>
+                                <input type="text" name="price" id="price" class="form-control" placeholder="Price" aria-label="price" aria-describedby="basic-addon1">
+                                @if($errors->has('price'))
+                                <div class="text-danger">
+                                    {{ $errors->first('price')}}
+                                </div>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label>Image Product </label>
+                                <input type="file" name="image" id="image" class="form-control" aria-label="desc" aria-describedby="basic-addon1">
+                                @if($errors->has('image'))
+                                <div class="text-danger">
+                                    {{ $errors->first('image')}}
+                                </div>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label>Name Team </label>
+                                <input type="text" name="name_pj" id="name_pj" class="form-control" placeholder="Name Team " aria-label="name_pj" aria-describedby="basic-addon1">
+                                @if($errors->has('name_pj'))
+                                <div class="text-danger">
+                                    {{ $errors->first('name_pj')}}
+                                </div>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label>Image Product </label>
+                                <input type="file" name="imagepj" id="imagepj" class="form-control" aria-label="desc" aria-describedby="basic-addon1">
+                                @if($errors->has('image'))
+                                <div class="text-danger">
+                                    {{ $errors->first('image')}}
+                                </div>
+                                @endif
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+
+        @foreach($product as $p)
+        <div class="modal" tabindex="-1" id="deletebill{{$p->id}}">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -92,7 +181,7 @@
                         <p>Apakah Anda Yakin Ingin Menghapus Data Ini</p>
                     </div>
                     <div class="modal-footer">
-                        <form action="bill/delete/{{$b->id}}" method="post">
+                        <form action="pro/delete/{{$p->id}}" method="post">
                             @csrf
                             @method('delete')
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

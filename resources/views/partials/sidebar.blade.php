@@ -29,10 +29,10 @@
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <i class="fas fa-users"></i><span class="hide-menu">Digiclass Agency </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="/produk" class="sidebar-link">
+                        <li class="sidebar-item"><a href="/adminproduk" class="sidebar-link">
                                 <span class="hide-menu">Produk</span></a>
                         </li>
-                        <li class="sidebar-item"><a href="/pemesan" class="sidebar-link">
+                        <li class="sidebar-item"><a href="/adminpemesan" class="sidebar-link">
                                 <span class="hide-menu">Pemesan</span></a>
                         </li>
                     </ul>

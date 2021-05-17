@@ -43,7 +43,7 @@
                               <h1 class="text-white" data-aos="fade-up">We Are Ready For Your Bussines!</h1>
                               <!-- <a href="https://wa.widget.web.id/ae56aa" target="_blank"><img src="https://wa.widget.web.id/assets/img/tombol-wa.png"></a> -->
 
-                              <a href="https://wa.widget.w eb.id/ae56aa" target="_blank" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Hubungi kami!</a>
+                              <a href="https://api.whatsapp.com/send?phone=6283806891628" target="_blank" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Hubungi kami!</a>
 
                          </div>
                     </div>

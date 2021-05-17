@@ -85,7 +85,7 @@
           <div class="cardproj">
                @foreach($product as $p)
                <div class="card" style="width: 15rem; height:auto">
-                    <img src="landingrev/images/work.jpg" class="card-img-top" alt="...">
+                    <img style="width: 250px; height:200px;" src="{{asset('produkfile/'.$p->image)}}" alt="">
                     <div class="card-body">
                     <center><h5 class="card-title">{{$p->name}}</h5>
                          <h6 class="card-text">{{$p->price}} | <b>{{$p->status}}</b></h6></center><br>

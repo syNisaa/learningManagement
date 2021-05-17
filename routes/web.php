@@ -100,6 +100,17 @@ Route::group(['middleware' => ['CheckRole:admin']], function () {
     Route::get('/databillings', 'AdminController@databillings')->name('databillings');
     Route::delete('/bill/delete/{id}', 'AdminController@deletebillings')->name('deletebillings');
     Route::get('/databill/cetakpdf', 'AdminController@cetakbill');
+
+    // produk 
+    Route::get('/adminproduk', 'ProductController@indexadmin');
+    Route::delete('/pro/delete/{id}', 'ProductController@delete');
+    Route::post('/pro/create', 'ProductController@create');
+
+    // pemesanan
+    Route::get('/adminpemesan', 'PemesanController@indexadmin');
+    Route::delete('/pe/delete/{id}', 'PemesanController@delete');
+    Route::post('/pe/create', 'PemesanController@create');
+    Route::get('/pe/cetak_pdf', 'PemesanController@cetak');
 });
 
 Route::group(['middleware' => ['CheckRole:instructor']], function () {

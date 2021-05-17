@@ -27,16 +27,15 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" style="height:300px;" src="landingrev/images/work.jpg" alt="First slide">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Digiclass Indonesia </h5>
+                                    <div class="row">
+                                    <img style="width: 250px; height:200px;" src="{{asset('produkfile/'.$p->image)}}" alt="">
+                                    
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <embed src="landingrev/images/work.jpg" type="" style="height:300px; width:100%;">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Digiclass Indonesia</h5>
-                                    </div>
+                                
+                                    
                                 </div>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -56,107 +55,33 @@
                     <font face="comic MS sans" size="6">{{$p->name}} <small>|<b> {{$p->price}}</b></small></font><br><br>
 
                     <font face="times new roman" size="4" class="mt-4 mb-4">{{$p->desc}}</font>
-
-                    <form id="form-bayar" method="post">
-                        <input type="hidden" name="class" id="class" value="{{$p->category}}">
-                        <input type="hidden" name="price" id="price" value="{{$p->price}}">
-                        <center><br><br>
-                            <button type="submit" class="btn btn-outline-success">Pesan</button>
-                            <a href="/digiclassagency" type="button" class="btn btn-outline-secondary">Back</a>
-                            <a href="/digiclassagency" type="button" class="btn btn-outline-secondary">Cht Admin</a>
-                        </center>
-                    </form>
+                    <br><br>
+                    <font face="times new roman" size="4" class="mt-4 mb-4">*Jika berminat, pemesanan di lakukan via wa yaa</font>
+                    <br><br>
+                    <center>
+                        <a href="/digiclassagency" type="button" class="btn btn-outline-secondary">Back</a>
+                        <a href="https://api.whatsapp.com/send?phone=6283806891628" type="button" class="btn btn-outline-success">Order Or Cht Admin</a>
+                    </center>
 
                 </div>
+                
             </div>
+            <br>
+                <center>
+                    <div class="pj" style="text-align: center;">
+                    <font face="times new roman" size="6" >Penanggung jawab </font><br>
+                     
+                    <img style="width: 250px; height:200px;" src="{{asset('produkfile/'.$p->image_pj)}}" alt=""><br>
+                    <font face="times new roman" size="5" >{{$p->name_pj}} </font><br>
 
-
+                    </div>
+                </center>
 
         </div>
     </section>
     @endforeach
 
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-y5TtpIOlSRzwbREL"></script>
 
-    <script>
-        document.querySelector('#form-bayar').addEventListener('submit', async e => {
-            e.preventDefault()
-            const formData = new FormData(e.target)
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                price: formData.get('price'),
-                class: formData.get('class'),
-            }
-            const price = formData.get('price')
-            const p = parseInt(price)
-            console.log(p)
-            const response = await fetch("{{ route('getpayment') }}", {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{csrf_token()}}'
-                },
-                body: JSON.stringify(data)
-            })
-            const result = await response.text()
-            snap.pay(result, {
-                onSuccess: async function(result) {
-                    console.log('success');
-                    console.log(result);
-                    const register = await fetch("{{ route('datasiswa') }}", {
-                        method: 'post',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{csrf_token()}}'
-                        },
-                        body: JSON.stringify({
-                            name: formData.get('name'),
-                            email: formData.get('email'),
-                            password: formData.get('password'),
-                            gender: formData.get('gender'),
-                            phone: formData.get('phone'),
-                            instansi: formData.get('instansi'),
-                            class: formData.get('class'),
-                            price: formData.get('price')
-                        })
-                    })
-                    var name = document.getElementsByName('name')
-                    var email = document.getElementsByName('email')
-                    var gender = document.getElementsByName('gender')
-                    var phone = document.getElementsByName('phone')
-                    var instansi = document.getElementsByName('instansi')
-                    var password = document.getElementsByName('password')
-                    var classcategory = document.getElementsByName('classcategory')
-                    console.log(name)
-                    console.log(email)
-                    console.log(gender)
-                    console.log(phone)
-                    console.log(instansi)
-                    console.log(password)
-                    console.log(classcategory)
-                    const dataRegis = await register.text()
-                    console.log(dataRegis)
-                    // if (dataRegis == "true" || dataRegis == "1") {
-                    //     window.location = '{{route("login")}}'
-                    // }
-                    // post("{{ route('register') }}");
-                    window.location = '{{url("homestudent")}}'
-                },
-                onPending: function(result) {
-                    console.log('pending');
-                    console.log(result);
-                },
-                onError: function(result) {
-                    console.log('error');
-                    console.log(result);
-                },
-                onClose: function() {
-                    console.log('customer closed the popup without finishing the payment');
-                }
-            })
-        })
-    </script>
 </body>
 
 </html>
