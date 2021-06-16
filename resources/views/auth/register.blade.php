@@ -41,14 +41,17 @@
         <div class="sub-cont">
             <div class="img">
                 <div class="img-text m-up">
-                    <h3>Don't have account? Sign Up</h3>
+                    <h3 style="color:black">Don't have account? Sign Up</h3>
+                    <br><img src="logo.png" alt="" style="width: 210px; height:200px;"> <br>
                 </div>
                 <div class="img-text m-in">
-                    <h3>Already have account? Sign In</h3>
+                    <h3 style="color:black">Already have account? Sign In</h3>
+                    <br><img src="logo.png" alt="" style="width: 210px; height:200px;"><br>
+                
                 </div>
                 <div class="img-btn">
-                    <span class="m-up">Sign Up</span>
-                    <span class="m-in">Sign In</span>
+                    <span class="m-up" style="color:black">Sign Up</span>
+                    <span class="m-in" style="color:black">Sign In</span>
                 </div>
             </div>
             <div class="form sign-up">
@@ -106,7 +109,7 @@
                         <!-- <input type="text" placeholder="" id="instansi" name="instansi"> -->
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </label>
-                    <label>
+                    <!-- <label>
                         <span>Instansi</span>
                         <select class="custom-select my-1 mr-sm-2" id="instansi" name="instansi" class="form-control" placeholder="Instansi" aria-label="class" aria-describedby="basic-addon1">
                             <option value="0" selected disabled>Choose Instansi..</option>
@@ -122,7 +125,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-                    </label>
+                    </label> -->
 
                     <button type="submit" class="submit" style="margin-top: 13px;">Sign In</button>
                 </form>
@@ -133,7 +136,7 @@
 
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-y5TtpIOlSRzwbREL"></script>
 
-    <script>
+    <!-- <script>
         document.querySelector('#form-bayar').addEventListener('submit', async e => {
             e.preventDefault()
             const formData = new FormData(e.target)
@@ -215,7 +218,7 @@
                 }
             })
         })
-    </script>
+    </script> -->
 
     <!-- <script>
         const formBayar = document.querySelector("#form-bayar")

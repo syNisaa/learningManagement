@@ -198,11 +198,13 @@
                                 <label>Class Category</label>
                                 <select class="custom-select my-1 mr-sm-2" id="class" name="class" class="form-control" placeholder="Class Category" aria-label="class" aria-describedby="basic-addon1">
                                     <option value="0" selected disabled>Choose...</option>
-                                    @foreach ($class as $c)
-                                    <option value="{{ $c->category }}">
-                                        {{ $c->category }}
+                                    
+                                    <option value="Digital Marketing">
+                                        Digital Marketing
                                     </option>
-                                    @endforeach
+                                    <option value="Digital Marketing">
+                                        Magang guru
+                                    </option>
                                 </select>
                                 @if($errors->has('class'))
                                 <div class="text-danger">

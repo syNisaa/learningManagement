@@ -1,13 +1,12 @@
 <title>Home-Digiclass</title>
-@include('partials.headlanding')
+@include('partials.navbar')
 
 <body>
     <!-- MENU BAR -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fa fa-line-chart"></i>
-                Digiclass Indonesia
+            <a class="navbar-brand" href="/homestudent">
+                <img src="logo.png" alt="" style="width: 60px; height:50px; margin-right:5px;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -15,7 +14,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a data-toggle="modal" data-target="#logoutModal" class="nav-link smoothScroll" title="Class In Digiclass" style="color: wheat;">Logout</a>
+                        <a data-toggle="modal" data-target="#logoutModal" class="nav-link smoothScroll" title="Logout" style="color: white;">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -32,7 +31,7 @@
                 @foreach($student as $s)
                 <div class="card mt-4" style="width: 17rem; margin-right:3px; margin-left:5px;">
                     <div class="card-body">
-                        <center>
+                    <center>
                             @if( $s->status == "aktif")
                             <a href="/dashstudent{{$s->class_category}}">
                                 <h5 class="card-title">{{$s->class_category}}</h5>
@@ -56,18 +55,49 @@
             <center>
                 <font face="comic MS sans" size="6">Kelas yang ada Di Digiclass Indonesia</font><br>
             </center>
+            <font face="comic MS sans" size="6">Program Pendidikan</font><br>
             <div class="row"><br>
-                @foreach($classes as $c)
+                @foreach($classespendidikan as $c)
                 <div class="card mt-4" style="width: 17rem; margin-right:3px; margin-left:5px;">
                     <div class="card-body">
+                    <img class="card-img-top" src="{{asset('image_class/'.$c->image)}}" alt="Card image cap">
                         <center><h5 class="card-title">{{$c->category}}</h5>
-                            <a href="/detail/{{ $c->id }}">Detail</a><br>
+                            <a href="/detail/{{ $c->category }}">Detail</a><br>
                         </center>
                         
                     </div>
                 </div>
                 @endforeach
             </div><br>
+            <font face="comic MS sans" size="6">Program Umum</font><br>
+            <div class="row"><br>
+                @foreach($classesumum as $c)
+                <div class="card mt-4" style="width: 17rem; margin-right:3px; margin-left:5px;">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{asset('image_class/'.$c->image)}}" alt="Card image cap">
+                        <center><h5 class="card-title">{{$c->category}}</h5>
+                            <a href="/detail/{{ $c->category }}">Detail</a><br>
+                        </center>
+                        
+                    </div>
+                </div>
+                @endforeach
+            </div><br>
+            <font face="comic MS sans" size="6">Program Lainnya</font><br>
+            <div class="row"><br>
+                @foreach($classeslainnya as $c)
+                <div class="card mt-4" style="width: 17rem; margin-right:3px; margin-left:5px;">
+                    <div class="card-body">
+                    <img class="card-img-top" src="{{asset('image_class/'.$c->image)}}" alt="Card image cap">
+                        <center><h5 class="card-title">{{$c->category}}</h5>
+                            <a href="/detail/{{ $c->category }}">Detail</a><br>
+                        </center>
+                        
+                    </div>
+                </div>
+                @endforeach
+            </div><br>
+            
         </div>
     </section>
 

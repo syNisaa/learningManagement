@@ -198,7 +198,7 @@ https://templatemo.com/tm-538-digital-trend
   }
 
   ::selection {
-    background: var(--secondary-color);
+    background-color: var(--secondary-color);
     color: var(--white-color);
   }
 
@@ -365,7 +365,7 @@ https://templatemo.com/tm-538-digital-trend
   -----------------------------------------*/
 
   .project {
-    background: var(--project-bg);
+    background-color: #f5c5b5;
   }
 
   .project-wrapper {

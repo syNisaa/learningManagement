@@ -2,15 +2,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     @include('partials.navbar')
-    @include('partials.headlanding')
 </head>
 
-<body >
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/homestudent">
+            <div class="row">
+                <img src="{{asset('logo.png')}}" alt="" style="width: 60px; height:50px; margin-right:5px;">
+            </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a data-toggle="modal" data-target="#logoutModal" class="nav-link smoothScroll" title="Class In Digiclass" style="color: white;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @include('partials.logmodal')
     @foreach($class as $c)
 
 
@@ -49,13 +64,10 @@
                     </div>
                 </div>
 
-
-
-
             </div>
 
-            <div class="content">
-                <font face="comic MS sans" size="6">{{$c->category}} <small>| Rp. <b> {{$c->price}}</b></small></font><br><br>
+            <div class="content mt-4">
+                <font face="comic MS sans" size="6">{{$c->category}} <small><br>
 
                 <font face="times new roman" size="4" class="mt-4 mb-2">{{$c->deskripsi}}</font>
 
@@ -83,11 +95,8 @@
 
                 <hr>
                 <div class="row">
-
-
-
                     <div class="col-lg-7 col-md-7 col-12 ">
-                        <img src="preview.png" alt="">
+                        <img src="{{asset('preview.png')}}" alt="">
                     </div>
 
                     <div class="col-lg-4 col-md-4 col-12" style="margin-top: 100px;">
@@ -107,13 +116,12 @@
 
                 </div>
 
+                <hr>
 
+                <center><font size="10"><b>Price : Rp.  {{$c->price}}</b></small></font></center>
 
-
+                <hr>
             </div>
-
-            <hr>
-
 
 
 
@@ -123,13 +131,17 @@
                 <input type="hidden" name="price" id="price" value="{{$c->price}}">
                 <center>
                     <div class="row">
-                        <a href="/registerst" type="button" class="btn btn-outline-secondary" style="width: 50%;">Register</a>
-                        <a href="https://api.whatsapp.com/send?phone=6283806891628" type="button" class="btn btn-outline-success" style="width: 50%;">Chat Admin</a>
+                        <button type="submit" class="btn btn-outline-success" style="width: 50%;">Bayar</button>
+                        <a href="https://api.whatsapp.com/send?phone=6283806891628" type="button" class="btn btn-outline-success" style="width: 50%;">Chat Admin</a><br>
+                        <a  href="/homestudent" class="btn btn-outline-secondary mt-2" style="width: 100%;">Back</a>
                     </div>
                 </center>
 
             </form>
 
+        </div>
+
+        </div>
         </div>
     </section>
     @endforeach
@@ -148,12 +160,15 @@
                 </div>
 
                 <div class="modal-body">
+                    <center>
+                        <font face="Comic MS Sans">Pendaftaran hub <a href="wa.me/628119999879">628119999879</a>Via Telpon dan WhatsApp</font>
+                    </center><br>
                     <form method="post" action="/datasiswa" enctype="multipart/form-data">
-                        <input type="text" name="class" id="class" value="{{$c->category}}">
-                        <input type="text" name="price" id="price" value="{{$c->price}}">
+                        <input type="hidden" name="class" id="class" value="{{$c->category}}">
+                        <input type="hidden" name="price" id="price" value="{{$c->price}}">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label>Bukti Pembayaran <small>Input bukti pembayaran berupa ss</small> </label>
+                            <label>Bukti Pembayaran <small>*Input SS Transaksi</small> </label>
                             <input type="file" name="file" id="file" class="form-control" aria-label="file" aria-describedby="basic-addon1">
                             @if($errors->has('file'))
                             <div class="text-danger">
@@ -177,7 +192,7 @@
 
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-y5TtpIOlSRzwbREL"></script>
 
-    <!-- <script>
+    <script>
         document.querySelector('#form-bayar').addEventListener('submit', async e => {
             e.preventDefault()
             const formData = new FormData(e.target)
@@ -210,30 +225,11 @@
                             'X-CSRF-TOKEN': '{{csrf_token()}}'
                         },
                         body: JSON.stringify({
-                            name: formData.get('name'),
-                            email: formData.get('email'),
-                            password: formData.get('password'),
-                            gender: formData.get('gender'),
-                            phone: formData.get('phone'),
-                            instansi: formData.get('instansi'),
                             class: formData.get('class'),
                             price: formData.get('price')
                         })
                     })
-                    var name = document.getElementsByName('name')
-                    var email = document.getElementsByName('email')
-                    var gender = document.getElementsByName('gender')
-                    var phone = document.getElementsByName('phone')
-                    var instansi = document.getElementsByName('instansi')
-                    var password = document.getElementsByName('password')
-                    var classcategory = document.getElementsByName('classcategory')
-                    console.log(name)
-                    console.log(email)
-                    console.log(gender)
-                    console.log(phone)
-                    console.log(instansi)
-                    console.log(password)
-                    console.log(classcategory)
+                   
                     const dataRegis = await register.text()
                     console.log(dataRegis)
                     // if (dataRegis == "true" || dataRegis == "1") {
@@ -255,7 +251,7 @@
                 }
             })
         })
-    </script> -->
+    </script>
 </body>
 
 </html>

@@ -59,6 +59,7 @@
                                 <th scope="col" class="text-center">class</th>
                                 <th scope="col" class="text-center">price</th>
                                 <th scope="col" class="text-center">Date</th>
+                                <!-- <th scope="col" class="text-center">Bukti</th> -->
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -70,6 +71,7 @@
                                 <td class="text-center">{{$b->class}}</td>
                                 <td class="text-center">{{$b->price}}</td>
                                 <td class="text-center">{{$b->date}}</td>
+                                <!-- <td class="text-center"><img src="{{asset('tugas_siswa/'.$b->bukti)}}" alt="" style="width: 80px; height:50px"></td> -->
                                 <td class="text-center"><a data-toggle="modal" data-target="#deletebill{{ $b->id }}" class="btn btn-small text-danger"><i class=" fa fa-trash"></i><span class="ml-2">Delete</span></a></td>
                             </tr>
                             @endforeach

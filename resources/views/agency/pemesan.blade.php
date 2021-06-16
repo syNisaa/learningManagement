@@ -74,7 +74,11 @@
                                 <td class="text-center">{{$p->produk}}</td>
                                 <td class="text-center">{{$p->price}}</td>
                                 <td class="text-center">{{$p->date_order}}</td>
-                                <td class="text-center">{{$p->status}}</td>
+                                @if  ($p->status  == "proses")
+                                    <td class="text-center"><button data-toggle="modal" data-target="#selesaikan{{ $p->id }}" class="btn btn-primary"> {{ $p->status }} </button></td>
+                                    @else
+                                    <td class="text-center"><b> {{ $p->status }} </b></td>
+                                @endif
                                 <td class="text-center"><a data-toggle="modal" data-target="#deletebill{{ $p->id }}" class="btn btn-small text-danger"><i class=" fa fa-trash"></i><span class="ml-2">Delete</span></a></td>
                             </tr>
                             @endforeach
@@ -83,6 +87,32 @@
                 </div>
             </div>
         </div>
+
+        @foreach($pesan as $p)
+            <div class="modal" tabindex="-1" id="selesaikan{{$p->id}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">UpdateStatus </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Apakan project ini sudah selesai?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="/pe/update/{{$p->id}}" method="post">
+                                @csrf
+                                @method('put')
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Selesai</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
 
         <div class="modal" tabindex="-1" id="addData">
             <div class="modal-dialog">

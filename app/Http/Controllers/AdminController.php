@@ -44,11 +44,14 @@ class AdminController extends Controller
     // Landing Page
     public function viewclass()
     {
+        $classespendidikan = Classes::where('jenisCategory','Program Pendidikan')->get();
+        $classeslainnya = Classes::where('jenisCategory','Program lainnya')->get();
+        $classesumum = Classes::where('jenisCategory','Program umum')->get();
         $classes = Classes::all();
         $category = Category::all();
         $testi= Testi::all();
         // echo ($category);
-        return view('index', compact('category','testi'));
+        return view('index', compact('category','classespendidikan','classesumum','classeslainnya','testi'));
     }
     public function class()
     {
@@ -59,11 +62,15 @@ class AdminController extends Controller
 
     public function percategory($classcategory)
     {
+        $classespendidikan = Classes::where('jenisCategory','Program Pendidikan')->get();
+        $classeslainnya = Classes::where('jenisCategory','Program lainnya')->get();
+        $classesumum = Classes::where('jenisCategory','Program umum')->get();
         $classes = Classes::where('jenisCategory',$classcategory)->get();
-        $category = Category::where('nameCategory',$classcategory)->get();
+        $categoryclass = Category::where('nameCategory',$classcategory)->get();
         $testi= Testi::all();
+        $category = Category::all();
         // echo ($category);
-        return view('classcategory', compact('category','testi','classes'));
+        return view('classcategory', compact('category','categoryclass','classespendidikan','classesumum','classeslainnya','testi','classes'));
     }
     
     // register siswa

@@ -41,9 +41,7 @@
                 <li class="sidebar-item"> <a class="sidebar-link" href="/user" aria-expanded="false"><i class="fas fa-chalkboard-teacher"></i><span class="hide-menu">Instructor
                         </span></a>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/instansi" aria-expanded="false"><i class="fas fa-school"></i>
-                        <span class="hide-menu">Instansi</span></a>
-                </li>
+                
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <i class="fas fa-users"></i><span class="hide-menu">Member </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">

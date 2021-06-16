@@ -105,12 +105,14 @@ Route::group(['middleware' => ['CheckRole:admin']], function () {
     Route::get('/adminproduk', 'ProductController@indexadmin');
     Route::delete('/pro/delete/{id}', 'ProductController@delete');
     Route::post('/pro/create', 'ProductController@create');
+    
 
     // pemesanan
     Route::get('/adminpemesan', 'PemesanController@indexadmin');
     Route::delete('/pe/delete/{id}', 'PemesanController@delete');
     Route::post('/pe/create', 'PemesanController@create');
     Route::get('/pe/cetak_pdf', 'PemesanController@cetak');
+    Route::put('/pe/update/{id}', 'PemesanController@update');
 });
 
 Route::group(['middleware' => ['CheckRole:instructor']], function () {
@@ -140,11 +142,13 @@ Route::group(['middleware' => ['CheckRole:instructor']], function () {
     Route::post('/ass/create', 'AssignmentController@create');
     Route::put('ass/update/{id}', 'AssignmentController@updateins');
 });
+    
+    Route::get('/detail{category}', 'MemberController@detail');
 
 Route::group(['middleware' => ['CheckRole:student']], function () {
     // Student
     Route::get('/homestudent', 'MemberController@viewclass');
-    Route::get('/detail/{id}', 'MemberController@detail');
+    Route::get('/detail/{category}', 'MemberController@detailst');
     Route::get('/dashstudent{class_category}', 'MemberController@index')->name('dashstudent');
     Route::get('/student', 'MemberController@student')->name('student');
 
@@ -166,7 +170,7 @@ Route::group(['middleware' => ['CheckRole:student']], function () {
 
 // Agency
     Route::get('/digiclassagency', 'ProductController@index');
-    Route::get('/detailproduk{id}', 'ProductController@detail');
+    Route::get('/detailproduk/{id}', 'ProductController@detail');
 
 // Route Change Password
 Route::get('password', 'AdminController@changeview')->name('change.password');

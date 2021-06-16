@@ -11,7 +11,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: -webkit-linear-gradient(left, #C4C4C4, #9d7cf2);
+  background: -webkit-linear-gradient(left, #C4C4C4, #f5c5b5);
   font-family: 'Nunito', sans-serif;
 }
 /* -webkit-linear-gradient(left, #C4C4C4, #273C75) */
@@ -167,7 +167,7 @@ button{
   top: 0;
   width: 900px;
   height: 100%;
-  background-image: url(../img_login/bglog0.png);
+  background-color: #f5c5b5;
   background-size: cover;
   transition: -webkit-transform 1.2s ease-in-out;
   transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
@@ -180,7 +180,7 @@ button{
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.3);
+  /* background: rgba(0,0,0,0.3); */
 }
 
 .cont.s-signup .img:before{
@@ -251,7 +251,7 @@ button{
   height: 36px;
   margin: 0 auto;
   background: transparent;
-  color: #fff;
+  color: black;
   text-transform: uppercase;
   font-size: 15px;
   cursor: pointer;
@@ -265,7 +265,7 @@ button{
   top: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid #fff;
+  border: 2px solid black;
   border-radius: 30px;
 }
 

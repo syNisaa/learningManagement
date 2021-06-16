@@ -1,4 +1,6 @@
+@include('partials.navbar')
 @include('partials.headlanding')
+
 
     <title>Class Category</title>
 
@@ -10,15 +12,15 @@
         <div class="row">
 
             <div class="col-lg-12 col-12 py-5 mt-0 mb-0 text-center">
-                @foreach($category as $c)
-                <h1 class="mb-4" data-aos="fade-up">Class <span style="color:cadetblue;"> {{$c->nameCategory}}</span></h1>
+                @foreach($categoryclass as $c)
+                <h1 class="mb-4" data-aos="fade-up">Class <span style=""><b> {{$c->nameCategory}}</span></h1></b>
                 @endforeach
 
             </div>
 
             <div class="col-lg-7 col-md-7 col-12 mb-4">
                 <div class="blog-header" data-aos="fade-up" data-aos-delay="100">
-                    <img src="landingrev/images/blog/blog-header-image.jpg" class="img-fluid" alt="blog header">
+                    <img src="17855.jpg" style="width: 100%; height:auto" class="img-fluid" alt="blog header">
 
                     <div class="blog-header-info">
                         <h4 class="blog-category text-info">Digiclass Indonesia</h4>
@@ -28,16 +30,16 @@
                 </div>
             </div>
 
-            <div class="col-lg-5 col-md-5 col-12 mb-4">
+            <div class="col-lg-4 col-md-4 col-12 mb-4">
 
                 @foreach($classes as $c)
                 <div class="blog-sidebar d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
                     <img src="landingrev/images/blog/blog-sidebar-image02.jpg" class="img-fluid" alt="blog">
 
                     <div class="blog-info">
-                        <a data-toggle="modal" data-target="#modal{{$c->id}}"><h6 class="blog-category text-primary">{{$c->category}}</h6></a>
+                        <a href="detail{{$c->category}}" ><h6 class="blog-category text-primary">{{$c->category}}</h6></a>
 
-                        <h5 ><b>Rp.{{$c->price}} </b> | {{$c->kuota}}</h5>
+                        <h7>Kuota Yang tersisa | <b> {{$c->kuota}} </b></h7>
                     </div>
                 </div><br>
                 @endforeach

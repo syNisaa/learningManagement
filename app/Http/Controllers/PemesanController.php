@@ -18,8 +18,8 @@ class PemesanController extends Controller
         return view('agency.pemesan',compact('classes','pesan','product'));
     } 
     public function delete($id){
-        $pesan = Pemesan::destroy($id);
-        $classes = Classes::all();
+        Pemesan::destroy($id);
+         Classes::all();
         return redirect('/adminpemesan');
     } 
 
@@ -41,5 +41,15 @@ class PemesanController extends Controller
     	$pesan = Pemesan::all();
     	$pdf = PDF::loadview('admin.pdf.pemesanpdf',['pesan'=>$pesan]);
     	return $pdf->download('laporan-Orderan.pdf');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $users = Pemesan::find($id);
+      
+        $users->status = "Selesai";
+        $users->save();
+        
+        return redirect('/adminpemesan');
     }
 }

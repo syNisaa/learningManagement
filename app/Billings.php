@@ -9,6 +9,6 @@ class Billings extends Model
     protected $table = "billings";
     protected $fillable = 
     [
-        'name','class','price','date'
+        'name','class','price','date','bukti'
     ];
 }

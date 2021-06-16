@@ -1,35 +1,9 @@
 <title>Home-Digiclass</title>
+
 @include('partials.headlanding')
 
 <body>
-
-     <!-- MENU BAR -->
-     <nav class="navbar navbar-expand-lg">
-          <div class="container">
-               <a class="navbar-brand" href="index.html">
-                    <i class="fa fa-line-chart"></i>
-                    Digiclass Indonesia
-               </a>
-
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-               </button>
-
-               <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                         <li class="nav-item">
-                              <a href="/" class="nav-link smoothScroll">Digiclass</a>
-                         </li>
-                         <li class="nav-item">
-                              <a href="/digiclassagency" class="nav-link">Digiclass Agency</a>
-                         </li>
-                         <li class="nav-item">
-                              <a href="/registerst" class="nav-link contact">Login Member</a>
-                         </li>
-                    </ul>
-               </div>
-          </div>
-     </nav>
+     @include('partials.navbar')
 
 
      <!-- HERO -->
@@ -40,9 +14,9 @@
                     <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
                          <div class="hero-text">
 
-                              <h1 class="text-white" data-aos="fade-up">We Are Ready For Your Bussines!</h1>
-                              <!-- <a href="https://wa.widget.web.id/ae56aa" target="_blank"><img src="https://wa.widget.web.id/assets/img/tombol-wa.png"></a> -->
-
+                              <font size="13" face="Comic MS Sans" class="text-white" data-aos="fade-up"> Tempat Belajar Paling Asik!</font>
+                              <br>
+                              <font style="color:gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias impedit ducimus facere labore magni velit, vel reiciendis fugiat tempora dolore sit corporis non! Vero odio placeat tempora ad inventore quam?</font>
                               <a href="https://api.whatsapp.com/send?phone=6283806891628" target="_blank" class="custom-btn btn-bg btn mt-3" data-aos="fade-up" data-aos-delay="100">Hubungi kami!</a>
 
                          </div>
@@ -59,34 +33,35 @@
           </div>
      </section>
 
-
-     <!-- ABOUT -->
      <section class="about section-padding pb-0" id="about">
           <div class="container">
-               <div class="row">
 
-                    <div class="col-lg-7 mx-auto col-md-10 col-12">
-                         <div class="about-info">
+               <div class="col-lg-10 mx-auto col-md-3">
+                    <div class="about-info">
 
-                              <h2 class="mb-4" data-aos="fade-up"><strong>Digiclass Indonesia</strong> </h2>
+                         <center>
+                              <h2 class="mb-4" data-aos="fade-up"><strong>Program Digiclass Indonesia</strong> </h2>
+                         </center>
 
-                              <p class="mb-0" data-aos="fade-up">Digiclass indonesia adalah Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         <div class="row"><br>
+                              @foreach($category as $ct)
+                              <div class="card mt-4" style="width: 17rem; margin-right:3px; margin-left:5px;">
+                                   <div class="card-body">
+                                        <center>
+                                             <a href="/classcategory{{$ct->nameCategory}}" style="font-size: 17px;">{{$ct->nameCategory}}</a>
+                                        </center>
 
-                                   <br><br>
+                                   </div>
+                              </div>
+                              @endforeach
 
-                                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, illo? Minima incidunt, nostrum maxime blanditiis fugiat nobis saepe. Eligendi velit amet distinctio voluptas libero impedit mollitia repudiandae deserunt in cupiditate.
-                              </p>
+
                          </div>
 
-                         <div class="about-image" data-aos="fade-up" data-aos-delay="200">
-
-                              <img src="landingrev/images/office.png" class="img-fluid" alt="office">
-                         </div>
                     </div>
-
                </div>
-          </div>
      </section>
+
 
      <!-- keunggulan -->
      <section class="project-detail section-padding">
@@ -105,10 +80,10 @@
                          <p class="mt-3 mb-4">Keunggulan yang dimiliki oleh Digiclas indonesa</p>
 
                          <ul class="list-detail">
-                              <li><span>Curabitur commodo a sapien non</span></li>
-                              <li><span>Sed facilisis convallis turpis</span></li>
-                              <li><span>Quisque placerat augue neque</span></li>
-                              <li><span>Nullam fringilla arcu a tortor</span></li>
+                              <li><span>Memiliki modul pembelajaran yang berisi rangkuman materi</span></li>
+                              <li><span>Modul pembelajaran menggunakan video dan animasi</span></li>
+                              <li><span>Peserta yang sudah lulus akan mendapatkan sertifikat</span></li>
+                              <li><span>Siswa dapat mengikuti ujian sertifikasi</span></li>
                          </ul>
                     </div>
                </div>
@@ -118,50 +93,45 @@
           </div>
      </section>
 
-
-     <!-- PROJECT -->
-     <section class="project section-padding" id="project">
-          <div class="container-fluid">
+     <!-- Galery -->
+     <section class="project-detail section-padding" style=" background-color:#f5c5b5;">
+          <div class="container">
+          <h2 class="mb-5"  data-aos="fade-up" style="text-align: center; margin-top:-90px;"><strong><center>Galery Digiclass Indonesia</center></strong> </h2>
                <div class="row">
-
-                    <div class="col-lg-12 col-12">
-
-                         <h2 class="mb-5 text-center" data-aos="fade-up">
-                              Program Terbaik
-                              <strong>Digiclass Indonesia</strong>
-                         </h2>
-
-                         <div class="owl-carousel owl-theme" id="project-slide">
-                              @foreach ($category as $ct)
-                              <div class="item project-wrapper" data-aos="fade-up" data-aos-delay="100">
-                                   <img src="{{asset('programimg/'.$ct->image)}}" class="img-fluid" alt="project image" style="width: 700px; height:400px">
-
-                                   <div class="project-info">
-                                        <small>{{$ct->nameCategory}}</small>
-
-                                        <h3>
-                                             <a href="/classcategory{{$ct->nameCategory}}">
-                                                  <span>{{$ct->nameCategory}}</span>
-                                                  <i class="fa fa-angle-right project-icon"></i>
-                                             </a>
-                                        </h3>
-                                   </div>
-                              </div>
-
-
-                              @endforeach
+                    
+                    <div class="card-group">
+                         <div class="card">
+                              <img class="card-img-top" src="gambar.jpg" alt="Card image cap" width="300" height="300">
                          </div>
-
+                         <div class="card">
+                              <img class="card-img-top" src="gambar1.jpg" alt="Card image cap" width="300" height="300">
+                         </div>
+                         <div class="card">
+                              <img class="card-img-top" src="gambar2.jpg" alt="Card image cap" width="300" height="300">
+                         </div>
                     </div>
-
+                    <div class="card-group">
+                         <div class="card">
+                              <img class="card-img-top" src="gambar10.jpg" alt="Card image cap" width="300" height="300">
+                         </div>
+                         <div class="card">
+                              <img class="card-img-top" src="gambar11.jpg" alt="Card image cap" width="300" height="300">
+                         </div>
+                         <div class="card">
+                              <img class="card-img-top" src="gambar5.jpg" alt="Card image cap" width="300" height="300">
+                         </div>
+                    </div>
                </div>
+
+
+
           </div>
      </section>
 
 
-     <!-- TESTIMONIAL -->
-     <section class="testimonial section-padding">
-          <div class="container">
+
+     <section class="testimonial section-padding" style=" background-color:white;">
+          <div class="container" style="margin-top:-65px;">
                <div class="row">
 
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -172,7 +142,7 @@
                                         <div class="col-lg-6 col-md-5 col-12">
                                              <div class="contact-image" data-aos="fade-up">
 
-                                                  <img src="landingrev/images/female-avatar.png" class="img-fluid" alt="website" style="width: 400px; height:550px">
+                                                  <img src="landingrev/images/female-avatar.png" class="img-fluid" alt="website" style="width: 200px; height:350px">
                                              </div>
                                         </div>
 
@@ -201,7 +171,7 @@
                                         <div class="col-lg-6 col-md-5 col-12">
                                              <div class="contact-image" data-aos="fade-up">
 
-                                                  <img src="{{asset('testiimg/'.$t->image)}}" class="img-fluid" alt="website" style="width: 400px; height:550px">
+                                                  <img src="{{asset('testiimg/'.$t->image)}}" class="img-fluid" alt="website" style="width: 200px; height:350px">
                                              </div>
                                         </div>
 
@@ -238,6 +208,7 @@
                     </div>
                </div>
      </section>
+
 
 
 
